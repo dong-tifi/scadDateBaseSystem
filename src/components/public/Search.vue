@@ -93,7 +93,7 @@ export default {
 .input{
     padding:0;
     width: 284px;
-    font-size: 18px;
+    font-size: 16px;
 }
 .related{
     position: absolute;
@@ -105,7 +105,7 @@ export default {
     z-index: 100;
     border-radius: 5px;
     overflow: hidden;
-    font-size: 22px;
+    font-size: 16px;
     box-shadow: 0px 0px 5px black;
 }
 .related li{

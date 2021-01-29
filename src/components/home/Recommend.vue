@@ -7,12 +7,7 @@
             推荐零件
         </el-card>
         <el-card class="box-card">
-  <!-- <router-link tag="div" v-for="item in recommends" :key="item.id" class="text item" @click = "go" to="/" >
-
-    {{item.name }}
-    <span>型号：{{item.model}}</span>
-  </router-link> -->
-  <div v-for="(item,index) in recommends" :key="item.id" class="text item" @click = "showDetails(index)"  >
+  <div v-for="(item,index) in this.$store.state.recommendData" :key="item.id" class="text item" @click = "showDetails(index)"  >
     {{item.name }}
     <el-tag type="danger" size="medium" class="btn">{{item.model}}</el-tag>
   </div>
@@ -30,48 +25,36 @@
 import info from '@/components/public/Info'
 import search from '@/components/public/Search'
 
+import{mapActions} from 'vuex'
+
 export default {
+
     name: 'Recommend',
 
     data() {
         return {
 
-         dialogTableVisible: false,
-            recommends:[],
+            dialogTableVisible: false,
             details:''
             
         };
     },
     created(){
-      this.getRecommends()
+      this.asyRecommend()
     },
+
      components:{
       info  ,
       search
     },
     methods: {
-      
-        async getRecommends(){
-            let {data} = await this.$http.get(`${this.$store.state.localhost}/get?get=recommend`)
-            this.recommends = data
-        },
+      // 由vuex控制
           showDetails(index){
         this.dialogTableVisible = true,
-        this.details = this.recommends[index]
+        this.details = this.$store.state.recommendData[index]
       },
+      ...mapActions(['asyRecommend']),
     },
-
-        // 路由跳转， 取消
-        // go(data){
-        //   this.$router.push({
-        //     name:'info',
-        //     params:data
-        //   })
-       
-        // }
-        // http(){
-        //   console.log(this.$http.get);
-        // }
     
 };
 </script>
@@ -97,13 +80,14 @@ export default {
 }
 
 .text {
-    font-size: 22px;
+    font-size: 18px;
     height: 25px;
     line-height: 25px;
     -webkit-user-select: none;
     text-indent: 14px;
-    
+    position: relative;
   }
+
 .text:hover{
         background:#ccc
     }

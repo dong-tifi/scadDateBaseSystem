@@ -42,9 +42,11 @@
 </template>
 
 <script>
-import uPhoto from '@/components/home/UPhoto'
 import info from '@/components/public/Info'
 import QS from 'qs'
+
+import{mapActions} from 'vuex'
+
   export default {
     data() {
       return {
@@ -65,9 +67,6 @@ import QS from 'qs'
         this.dialogTableVisible = true,
         this.details = this.tableData[index]
       },
-      // handleEdit(index, row) {
-      //   console.log(index, row);
-      // },
 
       handleDelete(index, row) {
         // index 位置，row 此行的数据
@@ -76,6 +75,7 @@ import QS from 'qs'
           model:row.model
         }     
         this.delete(message)
+
       },
       async getTableData(){
        let {data}=  await this.$http.get(`${this.$store.state.localhost}/get?get=`+this.num)
@@ -89,7 +89,6 @@ import QS from 'qs'
           type: 'warning'
         }).then(() => {
           // 删除内容
-          console.log('开始删除');
           this.deleteData(message)
            
         }).catch((e) => {
@@ -102,11 +101,14 @@ import QS from 'qs'
       async deleteData(message){
           let{data} = await this.$http.post(`${this.$store.state.localhost}/delete`,QS.stringify(message))
            this.tableData = data
+          // 更新数据
+          this.asyRecommend()
            this.$message({
             type: 'success',
             message: '删除成功!'
           });
-      }
+      },
+      ...mapActions(['asyRecommend']),
 
     },
     watch:{

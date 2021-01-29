@@ -33,6 +33,9 @@
 <script>
 
 import uPhoto from '@/components/home/UPhoto'
+
+import{mapActions} from 'vuex'
+
 import QS from 'qs'
  export default {
     data() {
@@ -70,8 +73,6 @@ import QS from 'qs'
     },
     methods: {
       submitForm(formName) {
-             
-
         this.$refs[formName].validate((valid) => {
           if (valid) {
             // 允许发送
@@ -82,11 +83,13 @@ import QS from 'qs'
                 }
               // 上传并清空
               this.$http.post(`${this.$store.state.localhost}/add`,formdatas).then(res=>{
-         this.$notify({
-          title: '成功',
-          message: '上传成功',
-          type: 'success'
-        })      
+              
+              this.$notify({
+                           title: '成功',
+                           message: '上传成功',
+                           type: 'success'
+                          })      
+              this.asyRecommend()//更新数据
               this.resetForm()
             })
 
@@ -98,7 +101,6 @@ import QS from 'qs'
         });
       },
       resetForm(formName) {
-        // this.$refs[formName].resetFields();
         this.imgUrl = !this.imgUrl
         for(let key in this.ruleForm){
           
@@ -108,7 +110,9 @@ import QS from 'qs'
       },
       getFile(file){
         this.ruleForm.file = file
-      }
+      },
+      ...mapActions(['asyRecommend']),
+
     }
   }
 </script>

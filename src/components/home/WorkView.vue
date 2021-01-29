@@ -31,8 +31,10 @@
        
       </el-submenu>
       <el-menu-item index="2">
-        <i class="el-icon-menu"></i>
-        <router-link tag="span" to="/home/add" slot="title">添加零件</router-link >
+        
+        <router-link tag="div" to="/home/add" slot="title">
+        <i class="el-icon-menu icon-add"></i>
+        添加零件</router-link >
       </el-menu-item>
      
     </el-menu>
@@ -93,5 +95,8 @@ export default {
     width: 840px;
     height: 600px;
     margin-right: 10px;
+}
+.icon-add{
+  vertical-align: -2px;
 }
 </style>

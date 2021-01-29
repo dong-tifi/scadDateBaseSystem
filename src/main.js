@@ -25,13 +25,24 @@ Vue.use(Vuex)
 // 创建一个公共对象
 const store = new Vuex.Store({
   state: {
-    localhost:'http://localhost:3300'
+    localhost: 'http://localhost:3300',
+    // 
+    recommendData: '',
+    proportion:[]
+    
   },
   mutations: {//同步
     
   },
   actions: {//异步
-    
+    async asyRecommend(context) {
+      let { data : recom } = await new Vue().$http.get(`${context.state.localhost}/get?get=recommend`)
+      // let{}
+      let { data: prop } = await new Vue().$http.get(`${context.state.localhost}/num`)
+      
+      context.state.recommendData = recom
+      context.state.proportion = prop
+    }
   },
   gerters: {//计算或过滤
     

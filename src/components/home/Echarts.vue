@@ -32,30 +32,22 @@ export default {
             series: [{
                 name: '数量',
                 type: 'bar',
-                data: []
+                data: this.$store.state.proportion
             }]
         }
         };
     },
     mounted() {
-        // this.initChart()
+        this.initChart()
     },
     created(){
-        this.getNum()
 
-    //    console.log(this.myChart);
     },
     methods: {
         initChart(){
            this.$echarts.init(this.$refs.chart,'wonderland').setOption(this.option);
 
-            } ,
-          async getNum(){
-            let {data} = await this.$http.get(`${this.$store.state.localhost}/num`)
-            this.option.series[0].data = Object.values(data)
-            this.initChart()
-            // console.log(this.data);
-        }
+            } 
     },
 };
 </script>
