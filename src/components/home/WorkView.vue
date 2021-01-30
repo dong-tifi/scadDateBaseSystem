@@ -1,7 +1,5 @@
 <template>
     <div id="workview" >
-    
-
   <el-col :span="5" class="nav" >
     <el-menu 
       default-active="2"
@@ -10,7 +8,6 @@
       @close="handleClose"
       background-color="#545c64"
       text-color="#fff"
-      
       active-text-color="#ffd04b" >
       <el-submenu index="1">
         <template slot="title">
@@ -21,26 +18,21 @@
         <el-menu-item-group>
           
           <el-menu-item index="1-1">
-              <router-link tag="div" to="/home/table/basic" slot="title">基础零件</router-link >
+              <router-link tag="div" to="/basic" slot="title">基础零件</router-link >
           </el-menu-item>
           <el-menu-item index="1-2">
-              <router-link tag="div" to="/home/table/merge" slot="title">合成零件</router-link >
+              <router-link tag="div" to="/merge" slot="title">合成零件</router-link >
           </el-menu-item>
-        </el-menu-item-group>
-       
-       
+        </el-menu-item-group>   
       </el-submenu>
       <el-menu-item index="2">
-        
-        <router-link tag="div" to="/home/add" slot="title">
-        <i class="el-icon-menu icon-add"></i>
-        添加零件</router-link >
+        <router-link tag="div" to="/" slot="title"><i class="el-icon-menu icon-add"></i>添加零件</router-link >
       </el-menu-item>
      
     </el-menu>
   </el-col>
 
-<el-card class="box-card">
+      <el-card class="box-card">
   <div slot="header" class="clearfix">
     <span>详细数据</span>
     <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
@@ -49,6 +41,7 @@
 <!-- 二级路由子路由 -->
   <router-view></router-view>
 </el-card>
+
 
     </div>
 </template>

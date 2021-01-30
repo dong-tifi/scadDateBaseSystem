@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import{mapState} from 'vuex'
 export default {
 
     data() {
@@ -32,13 +33,13 @@ export default {
             series: [{
                 name: '数量',
                 type: 'bar',
-                data: this.$store.state.proportion
+                data: []
             }]
         }
         };
     },
     mounted() {
-        this.initChart()
+        this.getData()
     },
     created(){
 
@@ -47,8 +48,16 @@ export default {
         initChart(){
            this.$echarts.init(this.$refs.chart,'wonderland').setOption(this.option);
 
-            } 
+            } ,
+        async getData(){
+            let { data } = await this.$http.get(`${this.$store.state.localhost}/num`)
+            this.option.series[0].data= data
+            this.initChart()
+       }
     },
+    // computed:{
+    //     ...mapState(['proportion'])
+    // }
 };
 </script>
 

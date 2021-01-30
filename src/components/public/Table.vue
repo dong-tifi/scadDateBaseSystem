@@ -31,7 +31,7 @@
           @click="handleDelete(scope.$index, scope.row)">删除</el-button>
       </template>
     </el-table-column>
-  </el-table>
+</el-table>
 
   <!-- 隐藏内容 预览 -->
 <el-dialog title="详情" :visible.sync="dialogTableVisible" class="dialog">
@@ -42,6 +42,7 @@
 </template>
 
 <script>
+// import add from'@/components/home/Add'
 import info from '@/components/public/Info'
 import QS from 'qs'
 
@@ -58,9 +59,7 @@ import{mapActions} from 'vuex'
     created(){
       this.getTableData()
     },
-    components:{
-      info  
-    },
+    components:{info},
     props:['num'],
     methods: {
       showDetails(index){

@@ -6,12 +6,10 @@
     <div class="content">
       
       <div class="content-view">
-        <router-view></router-view>
-        
+        <tabs></tabs>
       </div>
       <!-- 侧边栏 -->
       <div class="side-bar">
-       
        <recommend></recommend>
 
       </div>
@@ -23,16 +21,17 @@
 
 <script>
 import navmenu from './components/home/NavMenu'
-
+import tabs from './components/home/Tabs'
 import recommend from './components/home/Recommend'
 
 
 export default {
   name: "App",
-  components:{navmenu,recommend}
+  components:{navmenu,recommend,tabs}
 };
 </script>
 <style>
+
 body{
   background: url(./assets/bg.jpg);
 }

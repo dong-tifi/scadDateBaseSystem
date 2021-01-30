@@ -58,13 +58,6 @@ export default {
     
     data() {
         return {
-            // id:this.$route.params._id,
-            // // 拼接服务器地址
-            // imgurl:this.$route.params.imgurl?'http://localhost:3300/'+this.$route.params.imgurl:'',
-            // codeurl:this.$route.params.codeurl?'http://localhost:3300/'+this.$route.params.codeurl:'',
-
-            // code:this.$route.params.code,
-            // name:this.$route.params.name,
 
             id:this.message._id,
             // 拼接服务器地址
@@ -186,7 +179,7 @@ export default {
 
   .clearfix:before,
   .clearfix:after {
-      display: table;
+      display: block;
       content: "";
   }
   

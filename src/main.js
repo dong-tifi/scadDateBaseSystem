@@ -1,18 +1,20 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router/router'
-import axios from 'axios'
-import Vuex from 'vuex'
+// import axios from 'axios'
+// import Vuex from 'vuex'
 
 // 引入element 样式库
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+// import 'element-ui/lib/theme-chalk/index.css'
 
 import './assets/reset.css'
 
 
 // 引入echarts 
-import echarts from 'echarts'
+// import echarts from 'echarts'
+// 必须取消import引入 externals 才能生效
+
 // 挂载至原型
 
 Vue.prototype.$echarts = echarts
@@ -25,10 +27,9 @@ Vue.use(Vuex)
 // 创建一个公共对象
 const store = new Vuex.Store({
   state: {
-    localhost: 'http://localhost:3300',
+    localhost: 'http://116.85.69.83:3300',
     // 
     recommendData: '',
-    proportion:[]
     
   },
   mutations: {//同步
@@ -38,10 +39,7 @@ const store = new Vuex.Store({
     async asyRecommend(context) {
       let { data : recom } = await new Vue().$http.get(`${context.state.localhost}/get?get=recommend`)
       // let{}
-      let { data: prop } = await new Vue().$http.get(`${context.state.localhost}/num`)
-      
       context.state.recommendData = recom
-      context.state.proportion = prop
     }
   },
   gerters: {//计算或过滤
@@ -52,7 +50,7 @@ const store = new Vuex.Store({
 
 // import{Button,Select} from 'element-ui'
 
-new Vue({
+let app = new Vue({
   el: '#app',
   router,
   store,

@@ -35,8 +35,6 @@
 import uPhoto from '@/components/home/UPhoto'
 
 import{mapActions} from 'vuex'
-
-import QS from 'qs'
  export default {
     data() {
       return {
